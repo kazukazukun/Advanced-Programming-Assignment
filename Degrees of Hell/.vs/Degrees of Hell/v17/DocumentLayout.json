@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\My Files\\Studies\\UClan (BsC)\\Year 2\\Semester 1 \u0026 2\\Advanced Programming CO2402\\Assignment 01\\G21236321\\Degrees of Hell\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C6D67DD3-0BFC-440A-808B-F8D73595F005}|Degrees of Hell\\Degrees of Hell.vcxproj|C:\\My Files\\Studies\\UClan (BsC)\\Year 2\\Semester 1 \u0026 2\\Advanced Programming CO2402\\Assignment 01\\G21236321\\Degrees of Hell\\Degrees of Hell\\Degrees of Hell.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C6D67DD3-0BFC-440A-808B-F8D73595F005}|Degrees of Hell\\Degrees of Hell.vcxproj|solutionrelative:Degrees of Hell\\Degrees of Hell.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Degrees of Hell.cpp",
+              "DocumentMoniker": "C:\\My Files\\Studies\\UClan (BsC)\\Year 2\\Semester 1 \u0026 2\\Advanced Programming CO2402\\Assignment 01\\G21236321\\Degrees of Hell\\Degrees of Hell\\Degrees of Hell.cpp",
+              "RelativeDocumentMoniker": "Degrees of Hell\\Degrees of Hell.cpp",
+              "ToolTip": "C:\\My Files\\Studies\\UClan (BsC)\\Year 2\\Semester 1 \u0026 2\\Advanced Programming CO2402\\Assignment 01\\G21236321\\Degrees of Hell\\Degrees of Hell\\Degrees of Hell.cpp",
+              "RelativeToolTip": "Degrees of Hell\\Degrees of Hell.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-02-17T13:13:33.273Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
