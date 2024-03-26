@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\My Files\\Studies\\UClan (BsC)\\Year 2\\Semester 1 \u0026 2\\Advanced Programming CO2402\\Assignment 01\\G21236321\\Degrees of Hell\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C6D67DD3-0BFC-440A-808B-F8D73595F005}|Degrees of Hell\\Degrees of Hell.vcxproj|C:\\My Files\\Studies\\UClan (BsC)\\Year 2\\Semester 1 \u0026 2\\Advanced Programming CO2402\\Assignment 01\\G21236321\\Degrees of Hell\\Degrees of Hell\\DataReading.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C6D67DD3-0BFC-440A-808B-F8D73595F005}|Degrees of Hell\\Degrees of Hell.vcxproj|solutionrelative:Degrees of Hell\\DataReading.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6D67DD3-0BFC-440A-808B-F8D73595F005}|Degrees of Hell\\Degrees of Hell.vcxproj|C:\\My Files\\Studies\\UClan (BsC)\\Year 2\\Semester 1 \u0026 2\\Advanced Programming CO2402\\Assignment 01\\G21236321\\Degrees of Hell\\Degrees of Hell\\DataReading.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C6D67DD3-0BFC-440A-808B-F8D73595F005}|Degrees of Hell\\Degrees of Hell.vcxproj|solutionrelative:Degrees of Hell\\DataReading.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C6D67DD3-0BFC-440A-808B-F8D73595F005}|Degrees of Hell\\Degrees of Hell.vcxproj|C:\\My Files\\Studies\\UClan (BsC)\\Year 2\\Semester 1 \u0026 2\\Advanced Programming CO2402\\Assignment 01\\G21236321\\Degrees of Hell\\Degrees of Hell\\Degrees of Hell.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{C6D67DD3-0BFC-440A-808B-F8D73595F005}|Degrees of Hell\\Degrees of Hell.vcxproj|solutionrelative:Degrees of Hell\\Degrees of Hell.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
@@ -14,20 +22,49 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DataReading.h",
+              "DocumentMoniker": "C:\\My Files\\Studies\\UClan (BsC)\\Year 2\\Semester 1 \u0026 2\\Advanced Programming CO2402\\Assignment 01\\G21236321\\Degrees of Hell\\Degrees of Hell\\DataReading.h",
+              "RelativeDocumentMoniker": "Degrees of Hell\\DataReading.h",
+              "ToolTip": "C:\\My Files\\Studies\\UClan (BsC)\\Year 2\\Semester 1 \u0026 2\\Advanced Programming CO2402\\Assignment 01\\G21236321\\Degrees of Hell\\Degrees of Hell\\DataReading.h",
+              "RelativeToolTip": "Degrees of Hell\\DataReading.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-26T17:30:35.27Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "DataReading.cpp",
+              "DocumentMoniker": "C:\\My Files\\Studies\\UClan (BsC)\\Year 2\\Semester 1 \u0026 2\\Advanced Programming CO2402\\Assignment 01\\G21236321\\Degrees of Hell\\Degrees of Hell\\DataReading.cpp",
+              "RelativeDocumentMoniker": "Degrees of Hell\\DataReading.cpp",
+              "ToolTip": "C:\\My Files\\Studies\\UClan (BsC)\\Year 2\\Semester 1 \u0026 2\\Advanced Programming CO2402\\Assignment 01\\G21236321\\Degrees of Hell\\Degrees of Hell\\DataReading.cpp",
+              "RelativeToolTip": "Degrees of Hell\\DataReading.cpp",
+              "ViewState": "AQIAADwAAAAAAAAAAAAAAFQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-26T17:08:28.997Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Degrees of Hell.cpp",
               "DocumentMoniker": "C:\\My Files\\Studies\\UClan (BsC)\\Year 2\\Semester 1 \u0026 2\\Advanced Programming CO2402\\Assignment 01\\G21236321\\Degrees of Hell\\Degrees of Hell\\Degrees of Hell.cpp",
               "RelativeDocumentMoniker": "Degrees of Hell\\Degrees of Hell.cpp",
               "ToolTip": "C:\\My Files\\Studies\\UClan (BsC)\\Year 2\\Semester 1 \u0026 2\\Advanced Programming CO2402\\Assignment 01\\G21236321\\Degrees of Hell\\Degrees of Hell\\Degrees of Hell.cpp",
               "RelativeToolTip": "Degrees of Hell\\Degrees of Hell.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAwAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-02-17T13:13:33.273Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-17T13:13:33.273Z"
             }
           ]
         }

@@ -127,7 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DataReading.cpp" />
     <ClCompile Include="Degrees of Hell.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DataReading.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
