@@ -15,11 +15,11 @@ const std::string DataReading::mRelativePath = "Resources/";
  * @return An opened file if it was successfully opened,
  * otherwise a default-constructed std::ifstream object indicating failure.
  */
-std::ifstream DataReading::OpenFile(const std::string& fileName)
+std::ifstream DataReading::OpenFile(const std::string& kFileName)
 {
 	try
 	{
-		std::ifstream file(mRelativePath + fileName);
+		std::ifstream file(mRelativePath + kFileName);
 		if (!file.is_open())
 		{
 			throw std::runtime_error("Failed to open file for reading");
@@ -43,10 +43,10 @@ std::ifstream DataReading::OpenFile(const std::string& fileName)
  * @return The integer seed read from the file.
  * Returns 0 if the file cannot be opened or if the file is empty.
  */
-int DataReading::GetSeed(const std::string& fileName)
+int DataReading::GetSeed(const std::string& kFileName)
 {
 	int seed = 0;
-	std::ifstream file = OpenFile(fileName);
+	std::ifstream file = OpenFile(kFileName);
 	if (file.is_open())
 	{
 		std::string line = "";
@@ -68,10 +68,10 @@ int DataReading::GetSeed(const std::string& fileName)
  *         with each line's details stored as a separate string.
  *         If the file cannot be opened or is empty, an empty vector is returned.
  */
-Strings DataReading::GetCSpaces(const std::string& fileName)
+Strings DataReading::GetCSpaces(const std::string& kFileName)
 {
 	Strings Spaces;
-	std::ifstream file = OpenFile(fileName);
+	std::ifstream file = OpenFile(kFileName);
 	if (file.is_open())
 	{
 		std::string line = "";

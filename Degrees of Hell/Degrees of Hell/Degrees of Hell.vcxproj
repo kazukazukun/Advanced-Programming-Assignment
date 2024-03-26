@@ -129,9 +129,11 @@
   <ItemGroup>
     <ClCompile Include="DataReading.cpp" />
     <ClCompile Include="Degrees of Hell.cpp" />
+    <ClCompile Include="Spinner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataReading.h" />
+    <ClInclude Include="Spinner.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
