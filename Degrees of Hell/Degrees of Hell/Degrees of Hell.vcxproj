@@ -127,23 +127,49 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AccusedOfPlagiarism.cpp" />
     <ClCompile Include="Activity.cpp" />
     <ClCompile Include="Assessment.cpp" />
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Bogus.cpp" />
+    <ClCompile Include="Bonus.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CSpace.cpp" />
     <ClCompile Include="DataReading.cpp" />
     <ClCompile Include="Degrees of Hell.cpp" />
+    <ClCompile Include="Degrees.cpp" />
+    <ClCompile Include="Effective.cpp" />
+    <ClCompile Include="Event.cpp" />
     <ClCompile Include="ExtraCurricular.cpp" />
+    <ClCompile Include="Ineffective.cpp" />
+    <ClCompile Include="Mystery.cpp" />
+    <ClCompile Include="MysteryData.cpp" />
+    <ClCompile Include="PlagiarismHearing.cpp" />
+    <ClCompile Include="SkipClasses.cpp" />
     <ClCompile Include="Spinner.cpp" />
+    <ClCompile Include="WelcomeWeek.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AccusedOfPlagiarism.h" />
     <ClInclude Include="Activity.h" />
     <ClInclude Include="Assessment.h" />
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="Bogus.h" />
+    <ClInclude Include="Bonus.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CSpace.h" />
     <ClInclude Include="DataReading.h" />
+    <ClInclude Include="Degrees.h" />
+    <ClInclude Include="Effective.h" />
+    <ClInclude Include="Event.h" />
     <ClInclude Include="ExtraCurricular.h" />
+    <ClInclude Include="Ineffective.h" />
+    <ClInclude Include="Mystery.h" />
+    <ClInclude Include="MysteryData.h" />
+    <ClInclude Include="PlagiarismHearing.h" />
+    <ClInclude Include="SkipClasses.h" />
     <ClInclude Include="Spinner.h" />
+    <ClInclude Include="WelcomeWeek.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

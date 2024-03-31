@@ -39,6 +39,45 @@
     <ClCompile Include="ExtraCurricular.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Effective.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ineffective.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AccusedOfPlagiarism.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlagiarismHearing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SkipClasses.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WelcomeWeek.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mystery.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MysteryData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bonus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bogus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Degrees.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataReading.h">
@@ -60,6 +99,45 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ExtraCurricular.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Effective.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ineffective.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AccusedOfPlagiarism.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlagiarismHearing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SkipClasses.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WelcomeWeek.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mystery.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MysteryData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bonus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bogus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Degrees.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
