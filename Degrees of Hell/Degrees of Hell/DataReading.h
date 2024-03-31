@@ -11,12 +11,12 @@ typedef std::vector<std::string> Strings;
 class DataReading
 {
 private:
-	// Stores the relative path for input files
-	static const std::string mRelativePath;
-	static std::ifstream OpenFile(const std::string&);
+	// Stores the relative path for input files.
+	const std::string mRelativePath = "Resources/";
+	std::ifstream OpenFile(const std::string&);
 public:
-	static int GetSeed(const std::string&);
-	static Strings GetCSpaces(const std::string&);
+	int GetSeed(const std::string&);
+	Strings GetCSpaces(const std::string&);
 };
 
 #endif

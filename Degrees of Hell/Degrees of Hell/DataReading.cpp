@@ -6,13 +6,11 @@
 // Defines a type alias for a vector of strings.
 typedef std::vector<std::string> Strings;
 
-const std::string DataReading::mRelativePath = "Resources/";
-
 /**
  * @brief Opens a file with the provided file name.
  *
- * @param[in] fileName File name of the file to open.
- * @return An opened file if it was successfully opened,
+ * @param[in] kFileName, File name of the file to open.
+ * @return file, return An opened file if it was successfully opened,
  * otherwise a default-constructed std::ifstream object indicating failure.
  */
 std::ifstream DataReading::OpenFile(const std::string& kFileName)
@@ -39,8 +37,8 @@ std::ifstream DataReading::OpenFile(const std::string& kFileName)
  *
  * Opens the file with the provided file name, reads the first line of the file,
  * converts it to an int, and returns the result.
- * @param[in] fileName File name of the file containing the seed.
- * @return The integer seed read from the file.
+ * @param[in] kFileName, File name of the file containing the seed.
+ * @return seed, The integer seed read from the file.
  * Returns 0 if the file cannot be opened or if the file is empty.
  */
 int DataReading::GetSeed(const std::string& kFileName)
@@ -60,11 +58,11 @@ int DataReading::GetSeed(const std::string& kFileName)
 /**
  * @brief Reads details of CSpaces from a text file.
  *
- * Opens the file by provided fileName, reads its content line by line,
+ * Opens the file by provided file name, reads its content line by line,
  * and stores each line of CSpace details as a separate element in a vector of strings.
  *
- * @param[in] fileName File name of the text file containing details of CSpaces.
- * @return A vector of strings containing the details of CSpaces read from the file,
+ * @param[in] kFileName, File name of the text file containing details of CSpaces.
+ * @return Spaces, A vector of strings containing the details of CSpaces read from the file,
  *         with each line's details stored as a separate string.
  *         If the file cannot be opened or is empty, an empty vector is returned.
  */

@@ -21,7 +21,8 @@ int Spinner::Spin()
 
 /**
  * @brief Constructs a Spinner object with the specified seed value.
- * @param[in] kSeed The seed value to initialize the Spinner with.
+ * 
+ * @param[in] kSeed, The seed value to initialize the Spinner with.
  */
 Spinner::Spinner(const int& kSeed)
 {
