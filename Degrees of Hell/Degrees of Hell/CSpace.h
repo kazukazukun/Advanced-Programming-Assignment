@@ -1,5 +1,4 @@
-#ifndef CSPACE
-#define CSPACE
+#pragma once
 
 #include "CPlayer.h"
 #include <memory>
@@ -14,9 +13,7 @@ protected:
 	// Holds space name.
 	std::string mName = "";
 public:
-	virtual ~CSpace() {};
+	/*virtual ~CSpace() {};*/
 	CSpace(const std::string&);
 	virtual void Lands(PlayerSharedPtr) = 0;
 };
-
-#endif

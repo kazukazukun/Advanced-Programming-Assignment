@@ -1,2 +1,2 @@
-﻿Assessment.obj : error LNK2001: unresolved external symbol "public: virtual void __cdecl Assessment::Lands(class std::shared_ptr<class CPlayer>)" (?Lands@Assessment@@UEAAXV?$shared_ptr@VCPlayer@@@std@@@Z)
-C:\My Files\Studies\UClan (BsC)\Year 2\Semester 1 & 2\Advanced Programming CO2402\Assignment 01\G21236321\Degrees of Hell\x64\Debug\Degrees of Hell.exe : fatal error LNK1120: 1 unresolved externals
+﻿  Bogus.cpp
+  Degrees of Hell.vcxproj -> C:\My Files\Studies\UClan (BsC)\Year 2\Semester 1 & 2\Advanced Programming CO2402\Assignment 01\G21236321\Degrees of Hell\x64\Debug\Degrees of Hell.exe

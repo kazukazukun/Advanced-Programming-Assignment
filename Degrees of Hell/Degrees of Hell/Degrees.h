@@ -1,5 +1,4 @@
-#ifndef DEGREES
-#define DEGREES
+#pragma once
 
 #include "Spinner.h"
 #include "DataReading.h"
@@ -10,4 +9,3 @@ class Degrees
 {
 };
 
-#endif

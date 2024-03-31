@@ -18,3 +18,8 @@ void ExtraCurricular::GetHelp()
 		}
 	}
 }
+
+void ExtraCurricular::Lands(PlayerSharedPtr pPlayer)
+{
+
+}

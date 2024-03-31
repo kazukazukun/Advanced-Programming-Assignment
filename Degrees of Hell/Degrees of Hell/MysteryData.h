@@ -1,5 +1,4 @@
-#ifndef MYSTERYDATA
-#define MYSTERYDATA
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -22,4 +21,3 @@ public:
 // Defines a type alias for a vector of MysteryData objects.
 typedef std::vector<MysteryData> Mysteries;
 
-#endif

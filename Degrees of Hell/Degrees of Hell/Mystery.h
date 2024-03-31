@@ -1,5 +1,4 @@
-#ifndef MYSTERY
-#define MYSTERY
+#pragma once
 
 #include "CSpace.h"
 #include "MysteryData.h"
@@ -15,9 +14,7 @@ protected:
 	Mysteries mMysteries;
 	virtual void Spin(PlayerSharedPtr) = 0;
 public:
-	virtual ~Mystery() {};
-	Mystery(const std::string&);
+	/*virtual ~Mystery() {};*/
+	Mystery(const std::string&, std::weak_ptr<Spinner>);
 	virtual void Lands(PlayerSharedPtr) = 0;
 };
-
-#endif

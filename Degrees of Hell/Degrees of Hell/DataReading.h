@@ -1,5 +1,4 @@
-#ifndef DATAREADING
-#define DATAREADING	
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -18,5 +17,3 @@ public:
 	int GetSeed(const std::string&);
 	Strings GetCSpaces(const std::string&);
 };
-
-#endif

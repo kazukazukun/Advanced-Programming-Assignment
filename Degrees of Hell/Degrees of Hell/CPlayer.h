@@ -1,5 +1,4 @@
-#ifndef CPLAYER
-#define CPLAYER
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -75,5 +74,3 @@ public:
 	void SupportFriend(const unsigned short&);
 	void ResubmitAssessments();
 };
-
-#endif

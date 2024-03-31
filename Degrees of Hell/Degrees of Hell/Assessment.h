@@ -1,5 +1,4 @@
-#ifndef ASSESSMENT
-#define ASSESSMENT
+#pragma once
 
 #include "Activity.h"
 
@@ -25,4 +24,3 @@ typedef std::shared_ptr<Assessment> AssessmentSharedPtr;
 // Defines a type alias for a vector of Assessment type shared pointers.
 typedef std::vector<AssessmentSharedPtr> Assessments;
 
-#endif

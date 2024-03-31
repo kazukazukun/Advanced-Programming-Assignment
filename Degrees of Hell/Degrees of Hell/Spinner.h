@@ -1,5 +1,4 @@
-#ifndef SPINNER
-#define SPINNER
+#pragma once
 
 #include <iostream>
 
@@ -15,5 +14,3 @@ public:
     int Spin(const std::string&);
     Spinner(const int&);
 };
-
-#endif

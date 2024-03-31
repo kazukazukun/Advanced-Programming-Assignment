@@ -1,5 +1,4 @@
-#ifndef ACTIVITY
-#define ACTIVITY
+#pragma once
 
 #include "CSpace.h"
 #include "CPlayer.h"
@@ -28,7 +27,7 @@ protected:
 	// Holds players who completed the activity.
 	Players mCompleters;
 public:
-	virtual ~Activity() {};
+	/*virtual ~Activity() {};*/
 	Activity(const std::string&);
 
 	virtual void GetHelp() = 0;
@@ -37,5 +36,3 @@ public:
 	unsigned short GetSuccess();
 	virtual void Lands(PlayerSharedPtr) = 0;
 };
-
-#endif

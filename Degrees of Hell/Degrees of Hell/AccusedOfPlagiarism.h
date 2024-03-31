@@ -1,5 +1,4 @@
-#ifndef ACCUSEDOFPLAGIARISM
-#define ACCUSEDOFPLAGIARISM
+#pragma once
 
 #include "Effective.h"
 
@@ -9,4 +8,3 @@ public:
 	virtual void Lands(PlayerSharedPtr) override;
 };
 
-#endif

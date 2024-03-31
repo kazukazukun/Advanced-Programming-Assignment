@@ -66,3 +66,8 @@ void Assessment::RemoveCompleter(PlayerSharedPtr pPlayer)
 		}
 	}
 }
+
+void Assessment::Lands(PlayerSharedPtr pPlayer)
+{
+
+}
