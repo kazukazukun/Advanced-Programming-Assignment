@@ -6,7 +6,8 @@
 class Effective : public Event
 {
 public:
-	virtual ~Effective() = 0;
+	virtual ~Effective() {};
+	virtual void Lands(PlayerSharedPtr) = 0;
 };
 
 #endif EFFECTIVE

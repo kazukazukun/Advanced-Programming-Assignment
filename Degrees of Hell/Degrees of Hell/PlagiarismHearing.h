@@ -5,6 +5,8 @@
 
 class PlagiarismHearing : public Effective
 {
+public:
+	virtual void Lands(PlayerSharedPtr) override;
 };
 
 #endif

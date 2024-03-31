@@ -5,6 +5,8 @@
 
 class AccusedOfPlagiarism : public Effective
 {
+public:
+	virtual void Lands(PlayerSharedPtr) override;
 };
 
 #endif

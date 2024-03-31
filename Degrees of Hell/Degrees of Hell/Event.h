@@ -6,7 +6,8 @@
 class Event : public CSpace
 {
 public:
-	virtual ~Event() = 0;
+	virtual ~Event() {};
+	virtual void Lands(PlayerSharedPtr) = 0;
 };
 
 #endif EVENT

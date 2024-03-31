@@ -28,12 +28,14 @@ protected:
 	// Holds players who completed the activity.
 	Players mCompleters;
 public:
-	virtual ~Activity() = 0;
+	virtual ~Activity() {};
+	Activity(const std::string&);
 
 	virtual void GetHelp() = 0;
 	void AddCompleter(PlayerWeakPtr);
 	unsigned short GetMotivationCost();
 	unsigned short GetSuccess();
+	virtual void Lands(PlayerSharedPtr) = 0;
 };
 
 #endif

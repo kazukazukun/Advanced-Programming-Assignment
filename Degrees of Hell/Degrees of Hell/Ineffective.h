@@ -6,7 +6,8 @@
 class Ineffective : public Event
 {
 public:
-	virtual ~Ineffective() = 0;
+	virtual ~Ineffective() {};
+	virtual void Lands(PlayerSharedPtr) = 0;
 };
 
 #endif

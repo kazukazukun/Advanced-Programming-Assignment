@@ -1,5 +1,7 @@
 #include "Assessment.h"
 
+Assessment::Assessment(const std::string& kName) : Activity(kName) {};
+
 /**
  * @brief Retrieves the year of the assessment.
  * @return mYear, the year of the assessment.

@@ -10,11 +10,14 @@ private:
 	// Holds the year of the assessment.
 	unsigned short mYear = 0;
 public:
+	Assessment(const std::string&);
+
 	unsigned short GetYear() const;
 	unsigned short DeferMotivationValue() const;
 	unsigned short DeferSuccessValue() const;
 	void RemoveCompleter(PlayerSharedPtr);
 	void GetHelp() override;
+	virtual void Lands(PlayerSharedPtr) override;
 };
 
 // Defines a type alias for a Assessment type shared pointer.

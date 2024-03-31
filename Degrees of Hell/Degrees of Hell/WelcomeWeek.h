@@ -5,6 +5,8 @@
 
 class WelcomeWeek : public Ineffective
 {
+public:
+	virtual void Lands(PlayerSharedPtr) override;
 };
 
 #endif

@@ -9,14 +9,17 @@
  *
  * @return A random integer between 1 and 10.
  */
-int Spinner::Spin()
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+int Spinner::Spin(const std::string& kName)
 {
     if (!mSeeded)
     {
         srand(mSeed);
         mSeeded = true;
     }
-    return static_cast<int>(static_cast<double> (rand()) / (RAND_MAX + 1) * 10.0f + 1);
+    int num = static_cast<int>(static_cast<double> (rand()) / (RAND_MAX + 1) * 10.0f + 1);
+    // Do a print here
+    return num;
 }
 
 /**
