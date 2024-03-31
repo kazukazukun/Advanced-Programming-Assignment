@@ -13,33 +13,14 @@ typedef std::weak_ptr<Activity> ActivityWeakPtr;
 typedef std::shared_ptr<Activity> ActivitySharedPtr;
 // Defines a type alias for a vector of Activity type weak pointers.
 typedef std::vector<ActivityWeakPtr> Activites;
+// Defines a type alias for a vector of unsigned shorts.
+typedef std::vector<unsigned short> Shorts;
 
 // Class to represent players in the game.
-class CPlayer
+// Inherits from enable_shared_from_this to pass shared pointer of instances to other functions.
+class CPlayer : public std::enable_shared_from_this<CPlayer>
 {
 private:
-
-	/**
-	 * @brief Struct to hold priority orders for deferring assessments.
-	 * 
-	 * This struct is used to store priority orders for deferring assessments.
-	 * When deferring an assessment and if there are two or more assessments
-	 * with the same motivational cost, the assessment that gets deferred
-	 * differs based on the priority order defined here.
-	 * 
-	 * The struct contains priority year orders of assessments in descending order for each player year.
-	 */
-	struct PriorityOrders
-	{
-	public:
-		// Priority order for the first year: Highest priority assessment is deferred last.
-		short mFirstYear[3] = {3, 2, 1};
-		// Priority order for the second year: Highest priority assessment is deferred last.
-		short mSecondYear[3] = {1, 3, 2};
-		// Priority order for the third year: Highest priority assessment is deferred last.
-		short mThirdYear[3] = {2, 1, 3};
-	};
-
 	// Holds player name
 	std::string mName = "";
 	// Holds player motivation
@@ -69,6 +50,9 @@ private:
 	void DeferAssessment(ActivitySharedPtr);
 	void AddToAccomplishments(ActivityWeakPtr);
 	void AddToPortfolio(ActivityWeakPtr);
+	Shorts Prioritize(const short&, const short);
+	void Resubmit(ActivitySharedPtr);
+	Activites GetLowMotivationAssessments(const bool);
 
 public:
 
@@ -89,6 +73,7 @@ public:
 	bool CanAdvance(unsigned short);
 	void SupportFriend(const unsigned short&, const unsigned short&);
 	void SupportFriend(const unsigned short&);
+	void ResubmitAssessments();
 };
 
 #endif

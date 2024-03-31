@@ -2,7 +2,7 @@
 #define EXTRACURRICULAR
 
 #include "Activity.h"
-class ExtraCurricular :  Activity
+class ExtraCurricular : public Activity
 {
 public:
 	void GetHelp() override;

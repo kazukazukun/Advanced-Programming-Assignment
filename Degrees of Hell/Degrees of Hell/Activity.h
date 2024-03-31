@@ -10,6 +10,8 @@ class CPlayer;
 
 // Defines a type alias for a CPlayer type weak pointer.
 typedef std::weak_ptr<CPlayer> PlayerWeakPtr;
+// Defines a type alias for a CPlayer type shared pointer.
+typedef std::shared_ptr<CPlayer> PlayerSharedPtr;
 // Defines a type alias for a vector of CPlayer type weak pointers.
 typedef std::vector<PlayerWeakPtr> Players;
 

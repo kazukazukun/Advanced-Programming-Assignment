@@ -11,8 +11,9 @@ private:
 	unsigned short mYear = 0;
 public:
 	unsigned short GetYear() const;
-	unsigned short RegainableMotivation() const;
-	unsigned short SacrificableSuccess() const;
+	unsigned short DeferMotivationValue() const;
+	unsigned short DeferSuccessValue() const;
+	void RemoveCompleter(PlayerSharedPtr);
 	void GetHelp() override;
 };
 

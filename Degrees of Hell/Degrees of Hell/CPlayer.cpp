@@ -2,6 +2,7 @@
 #include "Activity.h"
 #include "Assessment.h"
 #include <typeinfo>
+#include <algorithm>
 
 /**
  * @brief Constructs a new CPlayer object with the provided name.
@@ -89,49 +90,94 @@ void CPlayer::DecrementSuccessBy(const unsigned int& kAmount)
 	mSuccess -= kAmount;
 }
 
-void CPlayer::RegainMotivation()
+/**
+ * @brief Prioritizes the assessment years based on the current year and graduation year.
+ *
+ * This function generates a priority order for assessment years based on the current year (kYear)
+ * and the graduation year (kGradYear). It starts from the graduation year and goes back to
+ * the current year, wrapping around if necessary.
+ *
+ * @param[in] kYear, The current year of the player.
+ * @param[in] kGradYear, The graduation year of the player. Default value is 3.
+ * @return order, A vector of shorts representing the descending priority order of assessment years.
+ */
+Shorts CPlayer::Prioritize(const short& kYear, const short kGradYear = 3)
 {
-	while (!IsMotivated() && !mPortfolio.empty())
+	Shorts order;
+	for (short i = kGradYear; i >= 1; i--)
 	{
-		Assessments lowMotivationAssessments;
-		for (auto assessment = mPortfolio.begin(); assessment != mPortfolio.end(); ++assessment)
+		short year = kYear + i - 1;
+		if (year <= kGradYear)
 		{
-			if (auto pDeferringAssessment = std::dynamic_pointer_cast<Assessment>(assessment->lock()))
+			order.push_back(year);
+		}
+		else
+		{
+			order.push_back(year % kGradYear);
+		}
+	}
+	return order;
+}
+
+/**
+ * @brief Retrieves the assessments with the lowest motivation cost in a portfolio.
+ * 
+ * Iterates through either mPortfolio or mDeferredPortfolio and finds the assessments
+ * with lowest motivation cost.
+ * @param[in] kResubmitting, Iterated through mDeferredPortfolio if true. Otherwise, iterated through mPortfolio.
+ * @return lowMotivationAssessments, The list of assessments with the lowest motivation cost.
+ */
+Activites CPlayer::GetLowMotivationAssessments(const bool kResubmitting = false)
+{
+	// Holds assessments with the lowest motivation cost.
+	Activites lowMotivationAssessments;
+	// Selecting the appropriate portfolio based on the value of kResubmitting
+	auto& AssessmentList = kResubmitting ? mDeferredPortfolio : mPortfolio;
+	// Iterates through the AssessmentList finding the assessment with the lowest motivation cost.
+	for (auto assessment = AssessmentList.begin(); assessment != AssessmentList.end(); ++assessment)
+	{
+		if (auto pDeferringAssessment = std::dynamic_pointer_cast<Assessment>(assessment->lock()))
+		{
+			// Pushes first assessment to the list, lowMotivationAssessments.
+			if (lowMotivationAssessments.empty())
 			{
-				if (lowMotivationAssessments.empty())
+				lowMotivationAssessments.push_back(pDeferringAssessment);
+				continue;
+			}
+			if (auto pLowMotivationAssessment = std::dynamic_pointer_cast<Assessment>(lowMotivationAssessments.front().lock()))
+			{
+				// Checks if the current lowest motivation cost of the assessments in the list, lowMotivationAssessments,
+				// is equal to that of the checking assessment.
+				if (pLowMotivationAssessment->DeferMotivationValue() == pDeferringAssessment->DeferMotivationValue())
 				{
+					// If so, pushes it to the list, lowMotivationAssessments.
 					lowMotivationAssessments.push_back(pDeferringAssessment);
-					continue;
 				}
-				if (lowMotivationAssessments.front()->RegainableMotivation() == pDeferringAssessment->SacrificableSuccess())
+				// Checks if the current lowest motivation cost of the assessments in the list, lowMotivationAssessments,
+				// is greater than that of the checking assessment.
+				else if (pLowMotivationAssessment->DeferMotivationValue() > pDeferringAssessment->DeferSuccessValue())
 				{
-					lowMotivationAssessments.push_back(pDeferringAssessment);
-				}
-				else if(lowMotivationAssessments.front()->RegainableMotivation() > pDeferringAssessment->SacrificableSuccess())
-				{
+					// If so, clears the list, lowMotivationAssessments, and pushes it to the list, lowMotivationAssessments.
 					lowMotivationAssessments.clear();
 					lowMotivationAssessments.push_back(pDeferringAssessment);
 				}
 			}
 		}
-		if (lowMotivationAssessments.size() == 1)
-		{
-			DeferAssessment(lowMotivationAssessments.front());
-			continue;
-		}
-		switch (mYear)
-		{
-		case 1:
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-		}
 	}
+	return lowMotivationAssessments;
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @brief Defers a provided assessment.
+ * 
+ * Iterates through mPortfolio and removes the assessment weak ptr.
+ * Increments motivation by the regainable motivation from deferring.
+ * Decrements success by the sacrificable success due to deferring.
+ * Removes player from mCompleters in the assessment.
+ * 
+ * @param[in] pActivity, The assessment to be deferred.
+ */
+/////////////////////////////////////////////////////////////////////////////////////////////////
 void CPlayer::DeferAssessment(ActivitySharedPtr pActivity)
 {
 	for (auto assessment = mPortfolio.begin(); assessment != mPortfolio.end(); ++assessment)
@@ -144,12 +190,63 @@ void CPlayer::DeferAssessment(ActivitySharedPtr pActivity)
 				{
 					mPortfolio.erase(assessment);
 					mDeferredPortfolio.push_back(pActivity);
-					IncrementMotivationBy(pDeferringAssessment->RegainableMotivation());
-					DecrementSuccessBy(pDeferringAssessment->SacrificableSuccess());
-					// Remove player from completers in assessments
+					IncrementMotivationBy(pDeferringAssessment->DeferMotivationValue());
+					DecrementSuccessBy(pDeferringAssessment->DeferSuccessValue());
+					pDeferringAssessment->RemoveCompleter(shared_from_this());
 					// Do a print here
 					break;
 				}
+			}
+		}
+	}
+}
+
+/**
+ * @brief Attempts to regain motivation by deferring low motivation assessments.
+ *
+ * This method attempts to regain motivation by deferring low motivation assessments in the player's portfolio.
+ * It iterates through the portfolio to find assessments with low motivation, prioritizes them based on the current
+ * year, and defers them accordingly until motivation is regained or the portfolio becomes empty.
+ */
+void CPlayer::RegainMotivation()
+{
+	// Continues until player is motivated or the portfolio is empty.
+	while (!IsMotivated() && !mPortfolio.empty())
+	{
+		// Holds assessments with the lowest motivation cost.
+		auto lowMotivationAssessments = GetLowMotivationAssessments();
+		// Checks if there's more than one assessments with the lowest motivation cost.
+		if (lowMotivationAssessments.size() == 1)
+		{
+			DeferAssessment(lowMotivationAssessments.front().lock());
+			continue;
+		}
+		// Retrieves the descending order of assessments to defer by year.
+		Shorts priorityYears = Prioritize(mYear);
+		// Iterates through the priority years.
+		for (const auto& priorityYear : priorityYears)
+		{
+			// Iterates through low motivation assessments.
+			for (auto assessment = lowMotivationAssessments.begin(); assessment != lowMotivationAssessments.end(); ++assessment)
+			{
+				if (auto pAssessment = std::dynamic_pointer_cast<Assessment>(assessment->lock()))
+				{
+					// Defers assessment.
+					if (priorityYear == pAssessment->GetYear())
+					{
+						DeferAssessment(pAssessment);
+					}
+				}
+				// Checks if deferring more assessments needed.
+				if (IsMotivated())
+				{
+					break;
+				}
+			}
+			// Checks if deferring more assessments needed.
+			if (IsMotivated())
+			{
+				break;
 			}
 		}
 	}
@@ -226,6 +323,7 @@ void CPlayer::AddToPortfolio(ActivityWeakPtr pActivity)
  * Gets help with activity completion from completers, if there're any.
  * If the provided activity is of type assessment, it is added to mPortfolio.
  * Otherwise, it is added to mAccomplishments.
+ * 
  * @param pActivity[in], The shared ptr of the activity to be completed.
  */
 void CPlayer::CompleteActivity(ActivitySharedPtr pActivity)
@@ -247,9 +345,11 @@ void CPlayer::CompleteActivity(ActivitySharedPtr pActivity)
  * @brief Supports a player by joining their extra-curricular activity.
  * 
  * Increments motivation and success gained by joining the activity.
+ * 
  * @param[in] kSuccessGain, success to increment.
  * @param[in] kMotivationGain, motivation to increment. 
  */
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 void CPlayer::SupportFriend(const unsigned short& kSuccessGain, const unsigned short& kMotivationGain)
 {
 	// Do a Print here
@@ -261,8 +361,10 @@ void CPlayer::SupportFriend(const unsigned short& kSuccessGain, const unsigned s
  * @brief Supports a player by helping their assessment.
  * 
  * Increments success gained by joining the activity.
+ * 
  * @param[in] kSuccessGain, success to gain.
  */
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 void CPlayer::SupportFriend(const unsigned short& kSuccessGain)
 {
 	// Do a print here
@@ -355,4 +457,106 @@ bool CPlayer::CanAdvance(unsigned short minNumOfAssessments = 3)
 bool CPlayer::IsMotivated() const
 {
 	return mMotivation >= 0;
+}
+
+/**
+ * @brief Resubmits a provided assessment.
+ *
+ * Iterates through mDeferredPortfolio and removes the assessment weak ptr.
+ * Decrements motivation by the defer motivation value to re-submit.
+ * Increments success by the defer success value from resubmission.
+ * Add player to mCompleters in the assessment.
+ *
+ * @param[in] pActivity, The assessment to be resubmitted.
+ */
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+void CPlayer::Resubmit(ActivitySharedPtr pActivity)
+{
+	for (auto assessment = mDeferredPortfolio.begin(); assessment != mDeferredPortfolio.end(); ++assessment)
+	{
+		if (auto pAssessment = assessment->lock())
+		{
+			if (pActivity == pAssessment)
+			{
+				if (auto pResubmission = std::dynamic_pointer_cast<Assessment>(pActivity))
+				{
+					mDeferredPortfolio.erase(assessment);
+					mPortfolio.push_back(pActivity);
+					DecrementMotivationBy(pResubmission->DeferMotivationValue());
+					IncrementSuccessBy(pResubmission->DeferSuccessValue());
+					pResubmission->AddCompleter(shared_from_this());
+					// Do a print here
+					break;
+				}
+			}
+		}
+	}
+}
+
+/**
+ * @brief Attempts to resubmit deferred assessments with gained motivation.
+ *
+ * This method attempts to resubmit assessments in the player's deferred-portfolio by spending gained motivation.
+ * It iterates through the deferred-portfolio to find assessments with low motivation, prioritizes them based on the current
+ * year, and resubmits them accordingly until the player does not have motivation to resubmit or the deeferred-portfolio becomes empty.
+ */
+void CPlayer::ResubmitAssessments()
+{
+	while (!mDeferredPortfolio.empty())
+	{
+		// Holds assessments with the lowest motivation cost.
+		auto lowMotivationAssessments = GetLowMotivationAssessments(true);
+		// Checks if resubmission is possible with the current motivation.
+		if (auto pFirstAssessment = std::dynamic_pointer_cast<Assessment>(lowMotivationAssessments.front().lock()))
+		{
+			if (pFirstAssessment->DeferMotivationValue() > mMotivation)
+			{
+				break;
+			}
+		}
+		// Checks if there's more than one assessments with the lowest motivation cost.
+		if (lowMotivationAssessments.size() == 1)
+		{
+			if (auto pFirstAssessment = std::dynamic_pointer_cast<Assessment>(lowMotivationAssessments.front().lock()))
+			{
+				Resubmit(pFirstAssessment);
+				continue;
+			}
+		}
+		// Retrieves the descending order of assessments to defer by year.
+		Shorts priorityYears = Prioritize(mYear);
+		// Converts the list into ascending order.
+		std::reverse(priorityYears.begin(), priorityYears.end());
+		for (const auto& priorityYear : priorityYears)
+		{
+			// Iterates through low motivation assessments.
+			for (auto assessment = lowMotivationAssessments.begin(); assessment != lowMotivationAssessments.end(); ++assessment)
+			{
+				if (auto pAssessment = std::dynamic_pointer_cast<Assessment>(assessment->lock()))
+				{
+					
+					if (priorityYear == pAssessment->GetYear())
+					{
+						Resubmit(pAssessment);
+					}
+				}
+				// Checks if resubmission is possible with the current motivation.
+				if (auto pFirstAssessment = std::dynamic_pointer_cast<Assessment>(lowMotivationAssessments.front().lock()))
+				{
+					if (pFirstAssessment->DeferMotivationValue() > mMotivation)
+					{
+						break;
+					}
+				}
+			}
+			// Checks if resubmission is possible with the current motivation.
+			if (auto pFirstAssessment = std::dynamic_pointer_cast<Assessment>(lowMotivationAssessments.front().lock()))
+			{
+				if (pFirstAssessment->DeferMotivationValue() > mMotivation)
+				{
+					break;
+				}
+			}
+		}
+	}
 }
