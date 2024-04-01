@@ -155,7 +155,7 @@ Activites CPlayer::GetLowMotivationAssessments(const bool kResubmitting = false)
 				}
 				// Checks if the current lowest motivation cost of the assessments in the list, lowMotivationAssessments,
 				// is greater than that of the checking assessment.
-				else if (pLowMotivationAssessment->DeferMotivationValue() > pDeferringAssessment->DeferSuccessValue())
+				else if (pLowMotivationAssessment->DeferMotivationValue() > pDeferringAssessment->DeferMotivationValue())
 				{
 					// If so, clears the list, lowMotivationAssessments, and pushes it to the list, lowMotivationAssessments.
 					lowMotivationAssessments.clear();
