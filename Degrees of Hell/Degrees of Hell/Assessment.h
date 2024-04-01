@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Activity.h"
+#include <memory>
 
 // Class to represent assessments spaces in the game.
 class Assessment : public Activity
@@ -15,7 +16,7 @@ public:
 	unsigned short DeferMotivationValue() const;
 	unsigned short DeferSuccessValue() const;
 	void RemoveCompleter(PlayerSharedPtr);
-	void GetHelp() override;
+	void GetHelp(const std::string&) override;
 	virtual void Lands(PlayerSharedPtr) override;
 };
 

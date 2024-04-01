@@ -15,7 +15,7 @@ ExtraCurricular::ExtraCurricular(const std::string& kName,
  *
  * All the completers help the landed player and gain success and motivation.
  */
-void ExtraCurricular::GetHelp()
+void ExtraCurricular::GetHelp(const std::string& kHelpReciever)
 {
 	if (!mCompleters.empty())
 	{
@@ -23,13 +23,32 @@ void ExtraCurricular::GetHelp()
 		{
 			if (auto pCompleter = completer->lock())
 			{
-				pCompleter->SupportFriend(GetSuccess(), GetMotivationCost());
+				pCompleter->SupportFriend(GetSuccess(), GetMotivationCost(), kHelpReciever);
 			}
 		}
 	}
 }
 
+/**
+ * @brief 
+ * @param[in] pPlayer 
+ */
 void ExtraCurricular::Lands(PlayerSharedPtr pPlayer)
 {
+	if (pPlayer->HasCompleted(shared_from_this()))
+	{
+		std::cout << pPlayer->GetName() << " has already undertaken the activity " << mName << '\n';
+		return;
+
+	}
+	if (GetMotivationCost() <= pPlayer->GetMotivation())
+	{
+		pPlayer->CompleteActivity(shared_from_this());
+	}
+	else
+	{
+		std::cout << pPlayer->GetName() << " doesn't have the " << GetMotivationCost();
+		std::cout << " motivation to complete the " << mName << '\n';
+	}
 
 }

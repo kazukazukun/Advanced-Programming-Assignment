@@ -15,6 +15,15 @@ Activity::Activity(const std::string& kName, const unsigned short& kMotivation,
 }
 
 /**
+ * @brief Retrieves task name.
+ * @return mName.
+ */
+std::string Activity::GetName()
+{
+	return mName;
+}
+
+/**
  * @brief Adds the provided player to mCompleters.
  * @param pCompleter[in], The weak ptr of the player.
  */

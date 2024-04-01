@@ -8,10 +8,11 @@ void PlagiarismHearing::Lands(PlayerSharedPtr pPlayer)
 	{
 		pPlayer->UnflagPlagiarized();
 		pPlayer->DecrementMotivationBy(mMotivationLoss);
-		// Do a print
+		std::cout << " and goes to the Hearing\n";
+		std::cout << pPlayer->GetName() << " loses motivation\n";
 	}
 	else
 	{
-		// Do a print
+		std::cout << pPlayer->GetName() << " lands on Plagiarism Hearing and supports their friend\n";
 	}
 }

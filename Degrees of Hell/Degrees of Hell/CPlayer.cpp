@@ -177,7 +177,6 @@ Activites CPlayer::GetLowMotivationAssessments(const bool kResubmitting = false)
  * 
  * @param[in] pActivity, The assessment to be deferred.
  */
-/////////////////////////////////////////////////////////////////////////////////////////////////
 void CPlayer::DeferAssessment(ActivitySharedPtr pActivity)
 {
 	for (auto assessment = mPortfolio.begin(); assessment != mPortfolio.end(); ++assessment)
@@ -193,7 +192,8 @@ void CPlayer::DeferAssessment(ActivitySharedPtr pActivity)
 					IncrementMotivationBy(pDeferringAssessment->DeferMotivationValue());
 					DecrementSuccessBy(pDeferringAssessment->DeferSuccessValue());
 					pDeferringAssessment->RemoveCompleter(shared_from_this());
-					// Do a print here
+					std::cout << GetName() << " defers " << pDeferringAssessment->GetName();
+					std::cout << " for " << pDeferringAssessment->DeferMotivationValue() << '\n';
 					break;
 				}
 			}
@@ -330,7 +330,17 @@ void CPlayer::CompleteActivity(ActivitySharedPtr pActivity)
 {
 	DecrementMotivationBy(pActivity->GetMotivationCost());
 	IncrementSuccessBy(pActivity->GetSuccess());
-	pActivity->GetHelp();
+	if (typeid(*pActivity) == typeid(Assessment))
+	{
+		std::cout << GetName() << " completes the " << pActivity->GetName();
+		
+	}
+	else
+	{
+		std::cout << GetName() << " undertakes " << pActivity->GetName() << " activity";
+	}
+	std::cout << " for " << pActivity->GetMotivationCost() << " and achieves " << pActivity->GetSuccess() << '\n';
+	pActivity->GetHelp(GetName());
 	if (typeid(*pActivity) == typeid(Assessment))
 	{
 		AddToPortfolio(pActivity);
@@ -348,11 +358,12 @@ void CPlayer::CompleteActivity(ActivitySharedPtr pActivity)
  * 
  * @param[in] kSuccessGain, success to increment.
  * @param[in] kMotivationGain, motivation to increment. 
+ * @param[in] kHelpReciever, help recievers name.
  */
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-void CPlayer::SupportFriend(const unsigned short& kSuccessGain, const unsigned short& kMotivationGain)
+void CPlayer::SupportFriend(const unsigned short& kSuccessGain, const unsigned short& kMotivationGain, const std::string& kHelpReciever)
 {
-	// Do a Print here
+	std::cout << kHelpReciever << " motivates " << GetName() << " by " << kMotivationGain << " by joining their activity\n";
+	std::cout << GetName() << " also acheives " << kSuccessGain << '\n';
 	mSuccess += kSuccessGain;
 	mMotivation += kMotivationGain;
 }
@@ -364,10 +375,9 @@ void CPlayer::SupportFriend(const unsigned short& kSuccessGain, const unsigned s
  * 
  * @param[in] kSuccessGain, success to gain.
  */
-/////////////////////////////////////////////////////////////////////////////////////////////////////
 void CPlayer::SupportFriend(const unsigned short& kSuccessGain)
 {
-	// Do a print here
+	std::cout << " ..." << GetName() << " helps and achieves " << kSuccessGain << '\n';
 	mSuccess += kSuccessGain;
 }
 
@@ -469,7 +479,6 @@ bool CPlayer::IsMotivated() const
  *
  * @param[in] pActivity, The assessment to be resubmitted.
  */
-//////////////////////////////////////////////////////////////////////////////////////////////////////
 void CPlayer::Resubmit(ActivitySharedPtr pActivity)
 {
 	for (auto assessment = mDeferredPortfolio.begin(); assessment != mDeferredPortfolio.end(); ++assessment)
@@ -485,7 +494,8 @@ void CPlayer::Resubmit(ActivitySharedPtr pActivity)
 					DecrementMotivationBy(pResubmission->DeferMotivationValue());
 					IncrementSuccessBy(pResubmission->DeferSuccessValue());
 					pResubmission->AddCompleter(shared_from_this());
-					// Do a print here
+					std::cout << GetName() << " submits deferred assessment ";
+					std::cout << pResubmission->GetName() << " for " << pResubmission->DeferMotivationValue() << '\n';
 					break;
 				}
 			}

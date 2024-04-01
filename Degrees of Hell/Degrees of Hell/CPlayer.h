@@ -70,7 +70,7 @@ public:
 	void RegainMotivation();
 	bool IsMotivated() const;
 	bool CanAdvance(unsigned short);
-	void SupportFriend(const unsigned short&, const unsigned short&);
+	void SupportFriend(const unsigned short&, const unsigned short&, const std::string&);
 	void SupportFriend(const unsigned short&);
 	void ResubmitAssessments();
 };

@@ -10,17 +10,66 @@
 #include <memory>
 #include <string>
 
+/**
+ * @brief Creates a board with using provided params.
+ * 
+ * Reads from file and populates mSpaces.
+ * 
+ * @param[in] kFileName, Name of the file conatianing the game input data.
+ * @param[in] pSpinner, The weak ptr of the spinner object created in the game.
+ */
 Board::Board(const std::string& kFileName, std::weak_ptr<Spinner> pSpinner)
 {
     std::shared_ptr<DataReading> pDataReader = std::make_shared<DataReading>();
     Populate(pDataReader->GetCSpaces(kFileName), pSpinner);
-    ///////////////////////////////////////
+    short index = 0;
+    std::weak_ptr<PlagiarismHearing> pPlagSpace = FindPlagiarismHearingSpace(index);
+    NotifyPlagiarismSpaces(index, pPlagSpace);
+}
+
+/**
+ * @brief Finds the index and the weak ptr of the  Plagiarism Hearing space.
+ * 
+ * @param[in, out] index, To retrieve the index of the  Plagiarism Hearing space.
+ * 
+ * @return The weak ptr of the Plagiarism Hearing space.
+ */
+std::weak_ptr<PlagiarismHearing> Board::FindPlagiarismHearingSpace(short& index)
+{
+    index = 0;
+    for (const auto& pSpace : mSpaces)
+    {
+        if (std::dynamic_pointer_cast<PlagiarismHearing>(pSpace))
+        {
+            return std::dynamic_pointer_cast<PlagiarismHearing>(pSpace);
+        }
+        index++;
+    }
+    return std::weak_ptr<PlagiarismHearing>();
+}
+
+/**
+ * @brief Sets PlagiarismHearing index and weak ptr to AccusedOfPlagiarism spaces. 
+ * @param[in] kIndex, PlagiarismHearing index.
+ * @param[in] pPlagSpace, PlagiarismHearing weak ptr.
+ */
+void Board::NotifyPlagiarismSpaces(const short& kIndex, std::weak_ptr<PlagiarismHearing> pPlagSpace)
+{
+    for (const auto& pSpace : mSpaces)
+    {
+        if (auto pAccOfPlagSpace = std::dynamic_pointer_cast<AccusedOfPlagiarism>(pSpace))
+        {
+            pAccOfPlagSpace->SetHearingSpace(kIndex, pPlagSpace);
+        }
+    }
 }
 
 /**
  * @brief Merges if there are consecutive elements which cannot
  * be assigned to an int, in the provided vector of strings.
+ * 
  * @param[in, out] list, The provided vector of strings.
+ * 
  * @return list, The modified vector of strings.
  */
 Strings Board::MergeStrings(Strings list)
@@ -129,4 +178,15 @@ void Board::Populate(Strings dataReadings, std::weak_ptr<Spinner> pSpinner)
             }
         }
     }
+}
+
+
+void Board::Lands(std::shared_ptr<CPlayer> pPlayer, const short& kIndex)
+{
+    mSpaces[kIndex]->Lands(pPlayer);
+}
+
+short Board::Length()
+{
+    return mSpaces.size();
 }

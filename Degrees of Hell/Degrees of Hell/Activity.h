@@ -14,7 +14,7 @@ typedef std::shared_ptr<CPlayer> PlayerSharedPtr;
 // Defines a type alias for a vector of CPlayer type weak pointers.
 typedef std::vector<PlayerWeakPtr> Players;
 
-class Activity : public CSpace
+class Activity : public CSpace, public std::enable_shared_from_this<Activity>
 {
 private:
 	// Holds name of the task.
@@ -30,9 +30,10 @@ public:
 	virtual ~Activity() {};
 	Activity(const std::string&, const unsigned short&, const unsigned short&);
 
-	virtual void GetHelp() = 0;
+	virtual void GetHelp(const std::string&) = 0;
 	void AddCompleter(PlayerWeakPtr);
 	unsigned short GetMotivationCost();
 	unsigned short GetSuccess();
 	virtual void Lands(PlayerSharedPtr) = 0;
+	std::string GetName();
 };

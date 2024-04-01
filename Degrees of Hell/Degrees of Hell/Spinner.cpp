@@ -9,7 +9,6 @@
  *
  * @return A random integer between 1 and 10.
  */
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 int Spinner::Spin(const std::string& kName)
 {
     if (!mSeeded)
@@ -18,7 +17,7 @@ int Spinner::Spin(const std::string& kName)
         mSeeded = true;
     }
     int num = static_cast<int>(static_cast<double> (rand()) / (RAND_MAX + 1) * 10.0f + 1);
-    // Do a print here
+    std::cout << kName << " spins " << num << '\n';
     return num;
 }
 

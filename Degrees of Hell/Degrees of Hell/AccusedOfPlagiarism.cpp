@@ -4,7 +4,7 @@ AccusedOfPlagiarism::AccusedOfPlagiarism(const std::string& kName) : Effective(k
 
 void AccusedOfPlagiarism::Lands(PlayerSharedPtr pPlayer)
 {
-	// Do a print here
+	std::cout << pPlayer->GetName() << " lands on " << mName << '\n';
 	pPlayer->FlagPlagiarized();
 	pPlayer->SetPosition(mHearingSpaceIndex);
 	mpHearingSpace.lock()->Lands(pPlayer);

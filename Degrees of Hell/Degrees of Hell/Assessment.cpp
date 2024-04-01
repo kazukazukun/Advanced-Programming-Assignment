@@ -44,7 +44,7 @@ unsigned short Assessment::DeferSuccessValue() const
  * 
  * All the completers help the landed player and gain success.
  */
-void Assessment::GetHelp()
+void Assessment::GetHelp(const std::string& kHelpReciever)
 {
 	if (!mCompleters.empty())
 	{
@@ -79,5 +79,19 @@ void Assessment::RemoveCompleter(PlayerSharedPtr pPlayer)
 
 void Assessment::Lands(PlayerSharedPtr pPlayer)
 {
+	if (pPlayer->HasCompleted(shared_from_this()))
+	{
+		std::cout << pPlayer->GetName() << " has already completed the " << mName << '\n';
+		return;
 
+	}
+	if (GetMotivationCost() <= pPlayer->GetMotivation())
+	{
+		pPlayer->CompleteActivity(shared_from_this());
+	}
+	else
+	{
+		std::cout << pPlayer->GetName() << " doesn't have the " << GetMotivationCost();
+		std::cout << " motivation to complete the " << mName << '\n';
+	}
 }

@@ -14,16 +14,16 @@ Bogus::Bogus(const std::string& kName, std::weak_ptr<Spinner> pSpinner) : Myster
 	mMysteries.push_back(MysteryData(20, "Lecturer changes assignment schedule."));
 }
 
-////////////////////////////////////////////////////////////////////////////
 void Bogus::Spin(PlayerSharedPtr pPlayer)
 {
 	const auto& rolledData = mMysteries[mpSpinner.lock()->Spin(pPlayer->GetName()) - 1];
-	// Do a print here
+	pPlayer->DecrementMotivationBy(rolledData.GetMotivation());
+	std::cout << rolledData.GetIncident() << '\n';
+	std::cout << " Lose motivation of " << rolledData.GetMotivation() << '\n';
 }
 
-////////////////////////////////////////////////////////////////////////////
 void Bogus::Lands(PlayerSharedPtr pPlayer)
 {
-	// Do a print here
+	std::cout << pPlayer->GetName() << " lands on " << mName << '\n';
 	Spin(pPlayer);
 }

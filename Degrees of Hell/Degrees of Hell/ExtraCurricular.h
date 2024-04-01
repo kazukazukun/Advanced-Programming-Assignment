@@ -6,6 +6,6 @@ class ExtraCurricular : public Activity
 public:
 	ExtraCurricular(const std::string&, const unsigned short&, const unsigned short&);
 
-	void GetHelp() override;
+	void GetHelp(const std::string&) override;
 	virtual void Lands(PlayerSharedPtr) override;
 };
