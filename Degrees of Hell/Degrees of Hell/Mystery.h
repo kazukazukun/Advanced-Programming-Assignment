@@ -14,7 +14,7 @@ protected:
 	Mysteries mMysteries;
 	virtual void Spin(PlayerSharedPtr) = 0;
 public:
-	/*virtual ~Mystery() {};*/
+	virtual ~Mystery() {};
 	Mystery(const std::string&, std::weak_ptr<Spinner>);
 	virtual void Lands(PlayerSharedPtr) = 0;
 };

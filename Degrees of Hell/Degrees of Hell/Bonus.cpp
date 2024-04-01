@@ -14,13 +14,17 @@ Bonus::Bonus(const std::string& kName, std::weak_ptr<Spinner> pSpinner) : Myster
 	mMysteries.push_back(MysteryData(10, "Get elected School President"));
 }
 
+////////////////////////////////////////////////////////////////////////////
 void Bonus::Spin(PlayerSharedPtr pPlayer)
 {
-
+	const auto& rolledData = mMysteries[mpSpinner.lock()->Spin(pPlayer->GetName()) - 1];
+	// Do a print here
 }
 
+////////////////////////////////////////////////////////////////////////////
 void Bonus::Lands(PlayerSharedPtr pPlayer)
 {
 	// Do a print here
+	Spin(pPlayer);
 
 }

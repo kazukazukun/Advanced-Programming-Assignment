@@ -1,6 +1,16 @@
 #include "Assessment.h"
 
-Assessment::Assessment(const std::string& kName) : Activity(kName) {};
+/**
+ * @brief Creates an assessment object with the provided params.
+ * @param[in] kName, Name of the space.
+ * @param[in] kMotivation, Motivation cost.
+ * @param[in] kSuccess, Gainable success.
+ */
+Assessment::Assessment(const std::string& kName, const unsigned short& kMotivation,
+	const unsigned short& kSuccess, const unsigned short& kYear) : Activity(kName, kMotivation, kSuccess)
+{
+	mYear = kYear;
+}
 
 /**
  * @brief Retrieves the year of the assessment.

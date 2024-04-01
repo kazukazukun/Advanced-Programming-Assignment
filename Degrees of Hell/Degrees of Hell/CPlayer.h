@@ -42,9 +42,6 @@ private:
 	unsigned short GetPosition() const;
 	void SetPosition(unsigned short&);
 	void IncrementYear();
-	bool IsPlagiarized() const;
-	void FlagPlagiarized();
-	void UnflagPlagiarized();
 	void DecrementSuccessBy(const unsigned int&);
 	void DeferAssessment(ActivitySharedPtr);
 	void AddToAccomplishments(ActivityWeakPtr);
@@ -65,6 +62,9 @@ public:
 	void DecrementMotivationBy(const unsigned int&);
 	void IncrementSuccessBy(const unsigned int&);
 	void SetPosition(const unsigned short&);
+	bool IsPlagiarized() const;
+	void FlagPlagiarized();
+	void UnflagPlagiarized();
 	bool HasCompleted(ActivitySharedPtr);
 	void CompleteActivity(ActivitySharedPtr);
 	void RegainMotivation();

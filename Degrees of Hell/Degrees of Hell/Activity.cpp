@@ -1,7 +1,18 @@
 #include "Activity.h"
 #include <cmath>
 
-Activity::Activity(const std::string& kName) : CSpace(kName) {};
+/**
+ * @brief Constructor.
+ * @param[in] kName, Name of the space.
+ * @param[in] kMotivation, Motivation cost.
+ * @param[in] kSuccess, Gainable success.
+ */
+Activity::Activity(const std::string& kName, const unsigned short& kMotivation,
+	const unsigned short& kSuccess) : CSpace(kName)
+{
+	mMotivationCost = kMotivation;
+	mSuccess = kSuccess;
+}
 
 /**
  * @brief Adds the provided player to mCompleters.

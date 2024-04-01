@@ -9,7 +9,7 @@ private:
 	// Holds the year of the assessment.
 	unsigned short mYear = 0;
 public:
-	Assessment(const std::string&);
+	Assessment(const std::string&, const unsigned short&, const unsigned short&, const unsigned short&);
 
 	unsigned short GetYear() const;
 	unsigned short DeferMotivationValue() const;
