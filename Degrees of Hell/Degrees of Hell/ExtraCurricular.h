@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Activity.h"
+
+// Represents an extra-curricular space.
 class ExtraCurricular : public Activity
 {
 public:

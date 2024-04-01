@@ -2,6 +2,7 @@
 
 #include "Mystery.h"
 
+// Class to represent bogus spaces.
 class Bogus : public Mystery
 {
 protected:

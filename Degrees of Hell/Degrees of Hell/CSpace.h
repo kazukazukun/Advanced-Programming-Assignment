@@ -7,6 +7,7 @@ class CPlayer;
 // Defines a type alias for a CPlayer type shared pointer.
 typedef std::shared_ptr<CPlayer> PlayerSharedPtr;
 
+// Represents a space on the board.
 class CSpace
 {
 protected:

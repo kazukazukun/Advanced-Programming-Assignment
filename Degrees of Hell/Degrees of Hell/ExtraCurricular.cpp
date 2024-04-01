@@ -11,11 +11,12 @@ ExtraCurricular::ExtraCurricular(const std::string& kName,
 	const unsigned short& kMotivation, const unsigned short& kSuccess = 20) : Activity(kName, kMotivation, kSuccess) {};
 
 /**
- * @brief Landed player gets help from other completers.
+ * @brief Landed player motivates completers.
  *
- * All the completers help the landed player and gain success and motivation.
+ * Landed player motivates the completers by joining their activity.
+ * The completers' success is incremented as well.
  */
-void ExtraCurricular::GetHelp(const std::string& kHelpReciever)
+void ExtraCurricular::GetHelp(const std::string& kMotivator)
 {
 	if (!mCompleters.empty())
 	{
@@ -23,15 +24,23 @@ void ExtraCurricular::GetHelp(const std::string& kHelpReciever)
 		{
 			if (auto pCompleter = completer->lock())
 			{
-				pCompleter->SupportFriend(GetSuccess(), GetMotivationCost(), kHelpReciever);
+				pCompleter->SupportFriend(GetSuccess(), GetMotivationCost(), kMotivator);
 			}
 		}
 	}
 }
 
 /**
- * @brief 
- * @param[in] pPlayer 
+ * @brief Land method.
+ * 
+ * When a player lands, an appropriate message is printed.
+ * If the player has already completed the activity, an appropriate
+ * message is printed based on the activity type.
+ * If the player has not completed the activity and has enough
+ * motivation to do so, completes the activity and adds player to completers
+ * Otherwise, an appropriate message is printed stating the low motication of the player.
+ * 
+ * @param[in] pPlayer, The landed player.
  */
 void ExtraCurricular::Lands(PlayerSharedPtr pPlayer)
 {

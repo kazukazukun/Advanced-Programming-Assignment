@@ -190,12 +190,24 @@ void Board::Populate(Strings dataReadings, std::weak_ptr<Spinner> pSpinner)
 }
 
 
-
+/**
+ * @brief Lands method.
+ * 
+ * Calls the land method of the of the given index' space and
+ * passes pPlayer as a param.
+ * 
+ * @param[in] pPlayer, The landed player.
+ * @param[in] kIndex, The landed index.
+ */
 void Board::Lands(std::shared_ptr<CPlayer> pPlayer, const short& kIndex)
 {
     mSpaces[kIndex]->Lands(pPlayer);
 }
 
+/**
+ * @brief Retrieves the length of the board.
+ * @return size of the mSpaces.
+ */
 short Board::Length()
 {
     return mSpaces.size();

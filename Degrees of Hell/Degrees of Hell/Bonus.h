@@ -2,6 +2,7 @@
 
 #include "Mystery.h"
 
+// Class to represent bonus spaces.
 class Bonus : public Mystery
 {
 protected:

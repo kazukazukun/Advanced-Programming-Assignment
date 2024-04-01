@@ -67,7 +67,7 @@ unsigned short Activity::GetSuccess()
 }
 
 /**
- * @brief Removes provided player from mCompleters.
+ * @brief Removes the provided player from mCompleters.
  * @param[in] pPlayer, The player to be removed.
  */
 void Activity::RemoveCompleter(PlayerSharedPtr pPlayer)

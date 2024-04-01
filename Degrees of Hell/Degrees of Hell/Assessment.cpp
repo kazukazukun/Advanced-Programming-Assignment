@@ -58,6 +58,18 @@ void Assessment::GetHelp(const std::string& kHelpReciever)
 	}
 }
 
+/**
+ * @brief Land method.
+ * 
+ * Prints an appropriate message about player landing.
+ * If player has already completed the assessment,
+ * an appropriate message is printed.
+ * Otherwise if the has enough motivation to complete the assessment,
+ * completes the assessment and adds the player to completers.
+ * Otherwise, prints about the low motivation of the player.
+ * 
+ * @param[in] pPlayer, The landed player.
+ */
 void Assessment::Lands(PlayerSharedPtr pPlayer)
 {
 	std::cout << pPlayer->GetName() << " lands on " << mName << '\n';

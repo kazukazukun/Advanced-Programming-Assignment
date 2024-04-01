@@ -16,9 +16,6 @@ typedef std::vector<PlayerWeakPtr> PlayersWeak;
 
 class Activity : public CSpace, public std::enable_shared_from_this<Activity>
 {
-private:
-	// Holds name of the task.
-	std::string mTaskName = "";
 protected:
 	// Holds the success gained by completing the activity.
 	unsigned short mSuccess = 0;

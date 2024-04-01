@@ -11,7 +11,7 @@ class DataReading
 {
 private:
 	// Stores the relative path for input files.
-	const std::string mRelativePath = "Resources/";
+	const std::string mRelativePath = "";
 	std::ifstream OpenFile(const std::string&);
 public:
 	int GetSeed(const std::string&);

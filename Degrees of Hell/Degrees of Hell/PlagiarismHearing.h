@@ -2,6 +2,7 @@
 
 #include "Effective.h"
 
+// Class to represents the Plagiarism Hearing space.
 class PlagiarismHearing : public Effective
 {
 private:

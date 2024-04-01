@@ -174,6 +174,7 @@ Activites CPlayer::GetLowMotivationAssessments(const bool kResubmitting = false)
  * Increments motivation by the regainable motivation from deferring.
  * Decrements success by the sacrificable success due to deferring.
  * Removes player from mCompleters in the assessment.
+ * Relevant messages are printed as well.
  * 
  * @param[in] pActivity, The assessment to be deferred.
  */
@@ -324,6 +325,8 @@ void CPlayer::AddToPortfolio(ActivityWeakPtr pActivity)
  * If the provided activity is of type assessment, it is added to mPortfolio.
  * Otherwise, it is added to mAccomplishments.
  * 
+ * Relevant messages are printed as well.
+ * 
  * @param pActivity[in], The shared ptr of the activity to be completed.
  */
 void CPlayer::CompleteActivity(ActivitySharedPtr pActivity)
@@ -333,7 +336,6 @@ void CPlayer::CompleteActivity(ActivitySharedPtr pActivity)
 	if (typeid(*pActivity) == typeid(Assessment))
 	{
 		std::cout << GetName() << " completes the " << pActivity->GetName();
-		
 	}
 	else
 	{
@@ -356,6 +358,8 @@ void CPlayer::CompleteActivity(ActivitySharedPtr pActivity)
  * 
  * Increments motivation and success gained by joining the activity.
  * 
+ * Relevant messages are printed as well.
+ * 
  * @param[in] kSuccessGain, success to increment.
  * @param[in] kMotivationGain, motivation to increment. 
  * @param[in] kHelpReciever, help recievers name.
@@ -372,6 +376,7 @@ void CPlayer::SupportFriend(const unsigned short& kSuccessGain, const unsigned s
  * @brief Supports a player by helping their assessment.
  * 
  * Increments success gained by joining the activity.
+ * Relevant messages are printed as well.
  * 
  * @param[in] kSuccessGain, success to gain.
  */
@@ -477,6 +482,8 @@ bool CPlayer::IsMotivated() const
  * Increments success by the defer success value from resubmission.
  * Add player to mCompleters in the assessment.
  *
+ * Relevant messages are printed as well.
+ * 
  * @param[in] pActivity, The assessment to be resubmitted.
  */
 void CPlayer::Resubmit(ActivitySharedPtr pActivity)
@@ -571,30 +578,52 @@ void CPlayer::ResubmitAssessments()
 	}
 }
 
+/**
+ * @brief Retrieves success of the player.
+ * @return mSuccess, The success.
+ */
 int CPlayer::GetSuccess() const
 {
 	return mSuccess;
 }
 
+/**
+ * @brief Removes player from completers.
+ * 
+ * Removes player from completers of assessments and extra-curricular activities
+ * to avoid dropped-out players from helping other players.
+ * Relevant messages are printed as well.
+ * 
+ */
 void CPlayer::DropOut()
 {
+	// Iterates through assessments in mPortfolio.
 	for (auto& assessment : mPortfolio)
 	{
 		if (auto pAssessment = std::dynamic_pointer_cast<Activity>(assessment.lock()))
 		{
+			// Removes player from completers.
 			pAssessment->RemoveCompleter(shared_from_this());
 		}
 	}
+	// Iterates through extra-curricular activities in mAccomplishments.
 	for (auto& accomplishment : mAccomplishments)
 	{
 		if (auto pAccomplishment = std::dynamic_pointer_cast<Activity>(accomplishment.lock()))
 		{
+			// Removes player from completers.
 			pAccomplishment->RemoveCompleter(shared_from_this());
 		}
 	}
 	std::cout << GetName() << " drops out/n";
 }
 
+/**
+ * @brief Prints stats of the player.
+ * 
+ * Prints player's motivation and success.
+ * 
+ */
 void CPlayer::PrintStats()
 {
 	std::cout << GetName() << "'s motivation is " << GetMotivation() << " and success is " << GetSuccess() << "\n\n";
