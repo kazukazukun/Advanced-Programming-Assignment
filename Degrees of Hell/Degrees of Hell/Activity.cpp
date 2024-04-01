@@ -65,3 +65,22 @@ unsigned short Activity::GetSuccess()
 {
 	return static_cast<unsigned short>(round(static_cast<double>(mSuccess) / (mCompleters.size() + 1)));
 }
+
+/**
+ * @brief Removes provided player from mCompleters.
+ * @param[in] pPlayer, The player to be removed.
+ */
+void Activity::RemoveCompleter(PlayerSharedPtr pPlayer)
+{
+	for (auto player = mCompleters.begin(); player != mCompleters.end(); ++player)
+	{
+		if (auto pCompleter = player->lock())
+		{
+			if (pPlayer == pCompleter)
+			{
+				mCompleters.erase(player);
+				break;
+			}
+		}
+	}
+}

@@ -18,7 +18,7 @@ void Bogus::Spin(PlayerSharedPtr pPlayer)
 {
 	const auto& rolledData = mMysteries[mpSpinner.lock()->Spin(pPlayer->GetName()) - 1];
 	pPlayer->DecrementMotivationBy(rolledData.GetMotivation());
-	std::cout << rolledData.GetIncident() << '\n';
+	std::cout << rolledData.GetIncident();
 	std::cout << " Lose motivation of " << rolledData.GetMotivation() << '\n';
 }
 

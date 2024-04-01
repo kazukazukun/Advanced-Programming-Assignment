@@ -570,3 +570,32 @@ void CPlayer::ResubmitAssessments()
 		}
 	}
 }
+
+int CPlayer::GetSuccess() const
+{
+	return mSuccess;
+}
+
+void CPlayer::DropOut()
+{
+	for (auto& assessment : mPortfolio)
+	{
+		if (auto pAssessment = std::dynamic_pointer_cast<Activity>(assessment.lock()))
+		{
+			pAssessment->RemoveCompleter(shared_from_this());
+		}
+	}
+	for (auto& accomplishment : mAccomplishments)
+	{
+		if (auto pAccomplishment = std::dynamic_pointer_cast<Activity>(accomplishment.lock()))
+		{
+			pAccomplishment->RemoveCompleter(shared_from_this());
+		}
+	}
+	std::cout << GetName() << " drops out/n";
+}
+
+void CPlayer::PrintStats()
+{
+	std::cout << GetName() << "'s motivation is " << GetMotivation() << " and success is " << GetSuccess() << "\n\n";
+}

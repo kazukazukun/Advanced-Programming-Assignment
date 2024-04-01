@@ -35,6 +35,7 @@ void ExtraCurricular::GetHelp(const std::string& kHelpReciever)
  */
 void ExtraCurricular::Lands(PlayerSharedPtr pPlayer)
 {
+	std::cout << pPlayer->GetName() << " lands on " << mName << '\n';
 	if (pPlayer->HasCompleted(shared_from_this()))
 	{
 		std::cout << pPlayer->GetName() << " has already undertaken the activity " << mName << '\n';
@@ -44,6 +45,7 @@ void ExtraCurricular::Lands(PlayerSharedPtr pPlayer)
 	if (GetMotivationCost() <= pPlayer->GetMotivation())
 	{
 		pPlayer->CompleteActivity(shared_from_this());
+		AddCompleter(pPlayer);
 	}
 	else
 	{

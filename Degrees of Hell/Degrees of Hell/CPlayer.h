@@ -39,9 +39,6 @@ private:
 	// Holds completed Extra-curricular activites
 	Activites mAccomplishments;
 
-	unsigned short GetPosition() const;
-	void SetPosition(unsigned short&);
-	void IncrementYear();
 	void DecrementSuccessBy(const unsigned int&);
 	void DeferAssessment(ActivitySharedPtr);
 	void AddToAccomplishments(ActivityWeakPtr);
@@ -49,11 +46,14 @@ private:
 	Shorts Prioritize(const short&, const short);
 	void Resubmit(ActivitySharedPtr);
 	Activites GetLowMotivationAssessments(const bool);
+	int GetSuccess() const;
 
 public:
 
 	CPlayer(const std::string&);
 
+	void DropOut();
+	void IncrementYear();
 	void SetName(const std::string&);
 	std::string GetName() const;
 	int GetMotivation() const;
@@ -62,6 +62,7 @@ public:
 	void DecrementMotivationBy(const unsigned int&);
 	void IncrementSuccessBy(const unsigned int&);
 	void SetPosition(const unsigned short&);
+	unsigned short GetPosition() const;
 	bool IsPlagiarized() const;
 	void FlagPlagiarized();
 	void UnflagPlagiarized();
@@ -73,4 +74,9 @@ public:
 	void SupportFriend(const unsigned short&, const unsigned short&, const std::string&);
 	void SupportFriend(const unsigned short&);
 	void ResubmitAssessments();
+	void PrintStats();
+
 };
+
+// Defines a type alias for a vector of shared ptrs of CPlayers.
+typedef std::vector<std::shared_ptr<CPlayer>> Players;

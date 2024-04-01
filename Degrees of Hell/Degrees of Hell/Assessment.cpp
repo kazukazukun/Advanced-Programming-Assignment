@@ -58,27 +58,9 @@ void Assessment::GetHelp(const std::string& kHelpReciever)
 	}
 }
 
-/**
- * @brief Removes provided player from mCompleters.
- * @param[in] pPlayer, The player to be removed.
- */
-void Assessment::RemoveCompleter(PlayerSharedPtr pPlayer)
-{
-	for (auto player = mCompleters.begin(); player != mCompleters.end(); ++player)
-	{
-		if (auto pCompleter = player->lock())
-		{
-			if (pPlayer == pCompleter)
-			{
-				mCompleters.erase(player);
-				break;
-			}
-		}
-	}
-}
-
 void Assessment::Lands(PlayerSharedPtr pPlayer)
 {
+	std::cout << pPlayer->GetName() << " lands on " << mName << '\n';
 	if (pPlayer->HasCompleted(shared_from_this()))
 	{
 		std::cout << pPlayer->GetName() << " has already completed the " << mName << '\n';
@@ -88,6 +70,7 @@ void Assessment::Lands(PlayerSharedPtr pPlayer)
 	if (GetMotivationCost() <= pPlayer->GetMotivation())
 	{
 		pPlayer->CompleteActivity(shared_from_this());
+		AddCompleter(pPlayer);
 	}
 	else
 	{

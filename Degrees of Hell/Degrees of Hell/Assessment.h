@@ -15,7 +15,6 @@ public:
 	unsigned short GetYear() const;
 	unsigned short DeferMotivationValue() const;
 	unsigned short DeferSuccessValue() const;
-	void RemoveCompleter(PlayerSharedPtr);
 	void GetHelp(const std::string&) override;
 	virtual void Lands(PlayerSharedPtr) override;
 };

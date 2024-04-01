@@ -13,6 +13,7 @@ void PlagiarismHearing::Lands(PlayerSharedPtr pPlayer)
 	}
 	else
 	{
-		std::cout << pPlayer->GetName() << " lands on Plagiarism Hearing and supports their friend\n";
+		std::cout << pPlayer->GetName() << " lands on Plagiarism Hearing\n";
+		std::cout << " and supports their friend\n";
 	}
 }

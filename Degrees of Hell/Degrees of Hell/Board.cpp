@@ -77,6 +77,10 @@ Strings Board::MergeStrings(Strings list)
     // Iterate through the list.
     for (auto element = list.begin(); element != list.end(); ++element)
     {
+        if (element == list.end() || (element + 1) == list.end())
+        {
+            break;
+        }
         // Check if the current string to int convertion is possible.
         std::istringstream currentString(*element);
         std::istringstream nextString(*(element + 1));
@@ -97,11 +101,14 @@ Strings Board::MergeStrings(Strings list)
                 list.erase(nextElement);
                 // Checks if the new next element to int convertion is possible.
                 nextElement = element + 1;
-                std::istringstream nextString(*nextElement);
-                if (!(nextString >> intValue))
+                if (nextElement != list.end())
                 {
-                    // Move the iterator back to combine the current string and next string.
-                    element--;
+                    std::istringstream nextString(*nextElement);
+                    if (!(nextString >> intValue))
+                    {
+                        // Move the iterator back to combine the current string and next string.
+                        element--;
+                    }
                 }
             }
         }
@@ -146,9 +153,11 @@ void Board::Populate(Strings dataReadings, std::weak_ptr<Spinner> pSpinner)
 {
     for (auto& pData : dataReadings)
     {
-        if (!pData.empty()) {
-            Strings params = MergeStrings(Split(pData));
-            switch (std::stoi(std::string(1, pData[0])))
+        std::vector<std::string> params = MergeStrings(Split(pData));
+        if (!params.empty())
+        {
+            int typeIndex = std::stoi(params[0]);
+            switch (typeIndex)
             {
             case 1: // Assessment
                 mSpaces.push_back(std::make_shared<Assessment>(params[1],
@@ -179,6 +188,7 @@ void Board::Populate(Strings dataReadings, std::weak_ptr<Spinner> pSpinner)
         }
     }
 }
+
 
 
 void Board::Lands(std::shared_ptr<CPlayer> pPlayer, const short& kIndex)
