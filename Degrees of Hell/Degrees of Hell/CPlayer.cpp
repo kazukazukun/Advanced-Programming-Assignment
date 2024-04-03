@@ -367,7 +367,7 @@ void CPlayer::CompleteActivity(ActivitySharedPtr pActivity)
 void CPlayer::SupportFriend(const unsigned short& kSuccessGain, const unsigned short& kMotivationGain, const std::string& kHelpReciever)
 {
 	std::cout << kHelpReciever << " motivates " << GetName() << " by " << kMotivationGain << " by joining their activity\n";
-	std::cout << GetName() << " also acheives " << kSuccessGain << '\n';
+	std::cout << GetName() << " also achieves " << kSuccessGain << '\n';
 	mSuccess += kSuccessGain;
 	mMotivation += kMotivationGain;
 }

@@ -25,7 +25,7 @@ private:
 	// Holds Spinner
 	std::shared_ptr<Spinner> mpSpinner;
 	// Holds Game Board.
-	std::shared_ptr<Board> mpBoard;
+	std::shared_ptr<Board> mpBoard = nullptr;
 
 	void KickOut(std::shared_ptr<CPlayer>);
 	void GameLoop();
